@@ -1,0 +1,22 @@
+﻿<UserControl x:Class="sh04Zahorulko.Component.LabelField"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:sh04Zahorulko"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800"
+             x:Name="labelField">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <TextBlock Margin="5, 0, 0, 0" FontWeight="Bold" x:Name="labelText" Grid.Row="0" Grid.Column="0" HorizontalAlignment="Left"/>
+        <TextBox Margin="0, 0, 20, 10" x:Name="textInput" IsEnabled="{Binding ElementName=labelField, Path=IsActive, UpdateSourceTrigger=PropertyChanged}" Grid.Row="1" Grid.Column="0" HorizontalAlignment="Stretch" Text="{Binding ElementName=labelField, Path=Text, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+    </Grid>
+</UserControl>

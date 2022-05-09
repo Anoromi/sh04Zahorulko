@@ -1,0 +1,39 @@
+﻿<UserControl x:Class="sh04Zahorulko.View.PersonView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:sh04Zahorulko.View" xmlns:sh04zahorulko="clr-namespace:sh04Zahorulko" xmlns:component="clr-namespace:sh04Zahorulko.Component"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <StackPanel>
+        <Button Command="{Binding Back}" FontSize="26">
+            <TextBlock>
+                Back
+            </TextBlock>
+        </Button>
+        <Grid HorizontalAlignment="Stretch">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <StackPanel Margin="5, 0, 5, 0">
+                <TextBlock FontSize="30" Margin="10, 5, 20, 5" FontWeight="Medium">
+                Type in credentials
+                </TextBlock>
+                <component:LabelField IsActive="{Binding Active, Mode=OneWay}" Label="First Name" Text="{Binding FirstName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                <component:LabelField IsActive="{Binding Active, Mode=OneWay}" Label="Last Name" Text="{Binding LastName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                <component:LabelField IsActive="{Binding Active, Mode=OneWay}" Label="Address" Text="{Binding AddressPath, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                <component:DateField IsActive="{Binding Active, Mode=OneWay}" Label="Birthday" SelectedDate="{Binding Birthday, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+
+                <Button FontSize="20" HorizontalAlignment="Right" Margin="10,0,10,0" Padding="6,4,6,4" Command="{Binding Click}">
+                    Calculate
+                </Button>
+            </StackPanel>
+            <Border Width="2px" Grid.Column="1" Background="Black">
+            </Border>
+        </Grid>
+    </StackPanel>
+</UserControl>
