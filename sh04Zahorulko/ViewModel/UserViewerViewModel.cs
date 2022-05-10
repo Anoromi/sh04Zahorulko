@@ -125,12 +125,10 @@ namespace sh04Zahorulko.ViewModel
                     People = v.People;
             });
             sort = new(SortValues, _ => tableActivity.Value);
-            Debug.WriteLine($"AAAAAAAA {this.peopleProvider.Value?.People}");
         }
 
         protected virtual void OnPropertyChanged([CallerMemberName] string? propertyName = null)
         {
-            Debug.WriteLine($"Notify {propertyName}");
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 

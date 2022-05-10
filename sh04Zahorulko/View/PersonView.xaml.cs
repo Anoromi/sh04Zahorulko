@@ -23,7 +23,6 @@ namespace sh04Zahorulko.View
         public PersonView()
         {
             InitializeComponent();
-            //addView.DataContext = DataContext;
         }
     }
 }

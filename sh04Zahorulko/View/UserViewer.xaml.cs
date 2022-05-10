@@ -23,7 +23,6 @@ namespace sh04Zahorulko.View
     /// </summary>
     public partial class UserViewer : UserControl
     {
-        DataGridColumn? previousColumn;
 
         public UserViewer()
         {
@@ -33,8 +32,6 @@ namespace sh04Zahorulko.View
         private void DataGrid_Sorting(object sender, DataGridSortingEventArgs e)
         {
             var vm = (DataContext as UserViewerViewModel)!;
-            //Debug.W e.Column.SortDirection
-            //new[] { }.OrderBy()
             Func<Person, IComparable?> action = e.Column.Header switch
             {
                 "Id" => (Person p) => p.Id,
@@ -65,10 +62,8 @@ namespace sh04Zahorulko.View
             };
 
             e.Handled = true;
-            Console.WriteLine(e.ToString());
 
             vm.sort.Invoke(new SortOptions(action, ascending));
-            previousColumn = e.Column;
         }
     }
 }

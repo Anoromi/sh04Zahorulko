@@ -26,8 +26,7 @@ namespace sh04Zahorulko.ViewModel
             this.tableActivity = tableActivity.Copy();
             this.selectedIndex = new(-1, postAction: v =>
             {
-                Debug.WriteLine($"Value {v}");
-                selectedPerson.Value = v >= 0 ? peopleProvider.Value!.People[v] : null;
+                selectedPerson.Value = v >= 0 ? peopleProvider!.Value!.People[v] : null;
             });
             peopleProvider = new(null);
             this.repository = repository.Copy(postAction: v =>
@@ -49,7 +48,6 @@ namespace sh04Zahorulko.ViewModel
                 DisplayNavigationTypes.Viewer => new UserViewerViewModel(() => Navigate(DisplayNavigationTypes.Editor), peopleProvider, selectedIndex, tableActivity),
                 DisplayNavigationTypes.Editor => new PersonViewModel(selectedPerson, () =>
                 {
-                    //peopleProvider.Value.Edit(selectedIndex.Value!.Value, selectedPerson.Value!);
                     Navigate(DisplayNavigationTypes.Viewer);
                     Task.Run(async () => await peopleProvider.Value!.Edit(selectedIndex, selectedPerson!));
 

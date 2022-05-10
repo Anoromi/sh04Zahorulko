@@ -55,12 +55,9 @@ namespace sh04Zahorulko.ViewModel
         {
             tableActivity.Value = false;
             await Task.Delay(1000);
-            Debug.WriteLine("Starting");
             var r = await Repository.Get();
             repository.Value = r;
-            //peopleProvider.Value = r.PeopleProvider;
             tableActivity.Value = true;
-            Debug.WriteLine("AAAAA");
         }
     }
 }

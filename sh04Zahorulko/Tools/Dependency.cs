@@ -21,7 +21,6 @@ namespace sh04Zahorulko
                 try
                 {
                     semaphore.Wait();
-                    Debug.WriteLine($"Assign to {value}");
                     if ((canAssign?.Invoke(in this.value, in value) ?? true))
                     {
                         this.value = value;
@@ -29,7 +28,6 @@ namespace sh04Zahorulko
                         {
                             if (r.TryGetTarget(out var rVal))
                             {
-                                Debug.WriteLine($"Notify {rVal} about {this.value}");
                                 rVal.Invoke(this.value);
                             }
                         }
@@ -86,30 +84,12 @@ namespace sh04Zahorulko
     }
     public class Dependency<T>
     {
-        //private T value;
-        //public T Value
-        //{
-        //    get => value;
-        //    set
-        //    {
-
-        //        if ((canAssign?.Invoke(this.value) ?? true))
-        //        {
-        //            this.value = value;
-        //            notification?.Invoke(name);
-        //            postAction?.Invoke(this.value);
-        //        }
-        //    }
-        //}
         private DependencyCell<T> cell;
         public T Value
         {
             get => cell.Value;
             set => cell.Value = value;
         }
-
-        //private string name;
-        //private Action<string>? notification;
         private (string name, Action<string> notification)? notify;
         private readonly Action<T>? postAction;
 
@@ -117,7 +97,6 @@ namespace sh04Zahorulko
         {
             notify?.notification.Invoke(notify.Value.name);
             var type = typeof(T);
-            Debug.WriteLine($"{type} calls {postAction}");
             postAction?.Invoke(value);
         }
 
@@ -137,7 +116,6 @@ namespace sh04Zahorulko
         ~Dependency()
         {
             cell.Remove(this);
-            Debug.WriteLine($"Dependency finalized {typeof(T)}");
         }
 
         public static implicit operator T(Dependency<T> d) => d.Value;
